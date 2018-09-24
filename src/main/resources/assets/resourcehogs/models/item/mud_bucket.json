@@ -1,0 +1,9 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "forge:items/bucket_base",
+        "layer1": "resourcehogs:items/bucket_mud",
+		"layer2": "resourcehogs:items/bucket_chunks",
+        "layer3": "forge:items/bucket_cover"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "resourcehogs:items/bacon",
+        "layer1": "resourcehogs:items/bacon_fat"
+    }
+}
