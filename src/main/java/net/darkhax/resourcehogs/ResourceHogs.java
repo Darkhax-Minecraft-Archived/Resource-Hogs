@@ -60,6 +60,8 @@ public class ResourceHogs {
     @EventHandler
     public void preInit (FMLPreInitializationEvent event) {
 
+        ModConfiguration.syncConfigData();
+        
         // Load all of the entries. Not constructed yet though.
         ResourceRegistry.loadResourceEntries();
 

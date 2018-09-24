@@ -1,5 +1,6 @@
 package net.darkhax.resourcehogs.entity;
 
+import net.darkhax.resourcehogs.ModConfiguration;
 import net.darkhax.resourcehogs.ResourceHogs;
 import net.darkhax.resourcehogs.blocks.TileEntityTruffle;
 import net.minecraft.block.Block;
@@ -30,6 +31,11 @@ public class EntityAIDigTruffle extends EntityAIBase {
     @Override
     public boolean shouldExecute () {
 
+    	if (!ModConfiguration.canDigTruffles) {
+    		
+    		return false;
+    	}
+    	
         if (this.diggingEntity.isChild() || !this.diggingEntity.getResourceType().getValidDimensions().contains(this.diggingEntity.dimension)) {
 
             return false;
