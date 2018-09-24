@@ -48,7 +48,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 @Mod(modid = "resourcehogs", name = "Resource Hogs", dependencies = "after:bookshelf;after:tconstruct", version = "@VERSION@")
 public class ResourceHogs {
 
-    public static final RegistryHelper REGISTRY = new RegistryHelper().setTab(new CreativeTabHunting()).enableAutoRegistration();
+    public static final RegistryHelper REGISTRY = new RegistryHelper().setTab(new CreativeTabResourceHogs()).enableAutoRegistration();
     public static final LoggingHelper LOG = new LoggingHelper("Resource Hogs");
 
     public static Block truffle;

@@ -4,9 +4,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class CreativeTabHunting extends CreativeTabs {
+public class CreativeTabResourceHogs extends CreativeTabs {
 
-    public CreativeTabHunting () {
+    public CreativeTabResourceHogs () {
 
         super("resourcehogs");
     }
