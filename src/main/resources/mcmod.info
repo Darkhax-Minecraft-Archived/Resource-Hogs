@@ -1,0 +1,23 @@
+[  
+   {  
+      "modid":"resourcehogs",
+      "name":"Resource Hogs",
+      "description":"Adds pigs which help you get resources.",
+      "version":"${version}",
+      "mcversion":"${mcversion}",
+      "url":"https://minecraft.curseforge.com/projects/resource-hogs",
+      "updateUrl":"",
+      "authorList":[  
+         "Darkhax"
+      ],
+      "credits":"",
+      "logoFile":"",
+      "screenshots":[  
+
+      ],
+      "parent":"",
+      "dependencies":[  
+
+      ]
+   }
+]
