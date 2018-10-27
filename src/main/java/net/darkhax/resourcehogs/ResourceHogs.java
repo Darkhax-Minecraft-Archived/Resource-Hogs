@@ -102,6 +102,11 @@ public class ResourceHogs {
                 }
             }
         }
+        
+        if (ResourceRegistry.RESOURCE_TYPES.isEmpty()) {
+            
+            event.player.sendMessage(new TextComponentString(TextFormatting.RED + "Resource Hogs has not been configured with any valid resource types. Please configure the mod, or resolve any noted errors."));
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
