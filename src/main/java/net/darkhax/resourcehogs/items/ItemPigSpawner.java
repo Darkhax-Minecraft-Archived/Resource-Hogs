@@ -7,10 +7,13 @@ import javax.annotation.Nullable;
 import com.mojang.realmsclient.gui.ChatFormatting;
 
 import net.darkhax.bookshelf.item.IColorfulItem;
+import net.darkhax.bookshelf.util.StackUtils;
 import net.darkhax.resourcehogs.ResourceHogs;
 import net.darkhax.resourcehogs.entity.EntityResourceHog;
 import net.darkhax.resourcehogs.registry.IResourceType;
+import net.darkhax.resourcehogs.registry.PigResourceType;
 import net.darkhax.resourcehogs.registry.ResourceRegistry;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -94,7 +97,23 @@ public class ItemPigSpawner extends Item implements IColorfulItem {
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-        tooltip.add(ChatFormatting.BLUE + "Type: " + ChatFormatting.RESET + ResourceHogs.getResource(stack).getName());
+        IResourceType type = ResourceHogs.getResource(stack);
+        
+        if (type != null) {
+            
+            tooltip.add(ChatFormatting.BLUE + "Type: " + ChatFormatting.RESET + type.getName());
+            tooltip.add(ChatFormatting.BLUE + "Diggable Blocks: " + ChatFormatting.RESET);
+            
+            for (IBlockState state : type.getDiggableBlocks()) {
+                
+                ItemStack stateStack = StackUtils.getStackFromState(state, 1);
+                
+                if (stateStack != null && !stateStack.isEmpty()) {
+                    
+                    tooltip.add(" - " + stateStack.getDisplayName());
+                }
+            }
+        }
     }
 
     @Override
