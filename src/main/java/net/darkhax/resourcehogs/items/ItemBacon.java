@@ -45,17 +45,7 @@ public class ItemBacon extends Item implements IColorfulItem {
     @Override
     public IItemColor getColorHandler () {
 
-        //15771042
-        return (stack, index) -> index == 0 ? getColor(0.65f) : ResourceHogs.getResource(stack).getColor();
+        return (stack, index) -> index == 0 ? 15771042 : ResourceHogs.getResource(stack).getColor();
     }
-    
-    private int getColor(float health) {
-        
-        if (health >= 0.5f) {
-            
-            return new Color( 1f - 1f * (health - 0.5f) / 0.5f, 1f, 0f).getRGB();
-        }
-        
-        return new Color( 1f, 1f * health / 0.5f,  0f).getRGB();
-    }
+
 }
