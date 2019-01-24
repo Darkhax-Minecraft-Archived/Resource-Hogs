@@ -24,53 +24,58 @@ public class HwylaInfoProvider implements IWailaPlugin, IWailaEntityProvider {
     @Override
     public List<String> getWailaBody(Entity entity, List<String> currenttip, IWailaEntityAccessor accessor, IWailaConfigHandler config) {
         
-        if (entity instanceof EntityResourceHog && ModConfiguration.canDigTruffles) {
+        if (entity instanceof EntityResourceHog) {
             
             final EntityResourceHog hog = (EntityResourceHog) entity;
+
+            currenttip.add(TextFormatting.GRAY + hog.getResourceType().getName());
             
-            // List of reasons why the pig can't dig. If empty, the pig can dig.
-            final List<String> reasons = new ArrayList<>();
-            
-            // Baby/child pigs can not dig.
-            if (hog.isChild()) {
+            if (ModConfiguration.canDigTruffles) {
                 
-                reasons.add(TextFormatting.RED + " - " + I18n.format("resourcehogs.issues.baby"));
-            }
-            
-            // Hog must be in a valid dimension.
-            if (!hog.getResourceType().getValidDimensions().contains(hog.dimension)) {
+                // List of reasons why the pig can't dig. If empty, the pig can dig.
+                final List<String> reasons = new ArrayList<>();
                 
-                reasons.add(TextFormatting.RED + " - "  + (I18n.format("resourcehogs.issues.dimension")));
-            }
-            
-            if (!hog.getResourceType().getDiggableBlocks().contains(hog.world.getBlockState(hog.getPosition().down()))) {
-                
-                reasons.add(TextFormatting.RED + " - " + I18n.format("resourcehogs.issues.noblock"));
-                
-                for (IBlockState state : hog.getResourceType().getDiggableBlocks()) {
+                // Baby/child pigs can not dig.
+                if (hog.isChild()) {
                     
-                    ItemStack stateStack = StackUtils.getStackFromState(state, 1);
+                    reasons.add(TextFormatting.RED + " - " + I18n.format("resourcehogs.issues.baby"));
+                }
+                
+                // Hog must be in a valid dimension.
+                if (!hog.getResourceType().getValidDimensions().contains(hog.dimension)) {
                     
-                    if (stateStack != null && !stateStack.isEmpty()) {
+                    reasons.add(TextFormatting.RED + " - "  + (I18n.format("resourcehogs.issues.dimension")));
+                }
+                
+                if (!hog.getResourceType().getDiggableBlocks().contains(hog.world.getBlockState(hog.getPosition().down()))) {
+                    
+                    reasons.add(TextFormatting.RED + " - " + I18n.format("resourcehogs.issues.noblock"));
+                    
+                    for (IBlockState state : hog.getResourceType().getDiggableBlocks()) {
                         
-                        reasons.add(TextFormatting.RED + "   - " + stateStack.getDisplayName());
+                        ItemStack stateStack = StackUtils.getStackFromState(state, 1);
+                        
+                        if (stateStack != null && !stateStack.isEmpty()) {
+                            
+                            reasons.add(TextFormatting.RED + "   - " + stateStack.getDisplayName());
+                        }
                     }
                 }
-            }
-            
-            if (!reasons.isEmpty()) {
                 
-                currenttip.add(TextFormatting.RED + I18n.format("resourcehogs.info.nodig"));
-                
-                for (String reason : reasons) {
+                if (!reasons.isEmpty()) {
                     
-                    currenttip.add(reason);
+                    currenttip.add(TextFormatting.RED + I18n.format("resourcehogs.info.nodig"));
+                    
+                    for (String reason : reasons) {
+                        
+                        currenttip.add(reason);
+                    }
                 }
-            }
-            
-            else {
                 
-                currenttip.add(TextFormatting.GREEN + I18n.format("resourcehogs.info.yesdig"));
+                else {
+                    
+                    currenttip.add(TextFormatting.GREEN + I18n.format("resourcehogs.info.yesdig"));
+                }
             }
         }
         
