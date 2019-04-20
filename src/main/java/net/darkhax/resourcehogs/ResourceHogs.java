@@ -176,7 +176,10 @@ public class ResourceHogs {
 
     public static void setResource (ItemStack stack, IResourceType type) {
 
-        StackUtils.prepareStackTag(stack).setString("ResourceType", type.getId());
+        if (stack != null && type != null) {
+            
+            StackUtils.prepareStackTag(stack).setString("ResourceType", type.getId());
+        }
     }
 
     public static IResourceType getResource (ItemStack stack) {

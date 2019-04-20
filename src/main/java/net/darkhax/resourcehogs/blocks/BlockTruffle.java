@@ -208,8 +208,13 @@ public class BlockTruffle extends BlockTileEntity implements IColorfulBlock, ITi
         if (tile instanceof TileEntityTruffle) {
 
             final ItemStack item = new ItemStack(this, 1);
-            ResourceHogs.setResource(item, ((TileEntityTruffle) tile).getResource());
-            return item;
+            final IResourceType resource = ((TileEntityTruffle) tile).getResource();
+            
+            if (resource != null) {
+                
+                ResourceHogs.setResource(item, resource);
+                return item;
+            }
         }
 
         return ItemStack.EMPTY;
