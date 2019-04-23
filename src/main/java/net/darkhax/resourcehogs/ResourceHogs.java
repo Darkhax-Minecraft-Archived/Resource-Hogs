@@ -53,23 +53,22 @@ public class ResourceHogs {
 
     public static Block truffle;
 
-    public Item spawner;
-    public Item mudBucket;
+    public static Item spawner;
+    public static Item mudBucket;
     public static Item bacon;
 
     @EventHandler
     public void preInit (FMLPreInitializationEvent event) {
-
         ModConfiguration.syncConfigData();
         
         // Load all of the entries. Not constructed yet though.
         ResourceRegistry.loadResourceEntries();
 
-        this.spawner = REGISTRY.registerItem(new ItemPigSpawner(), "spawner").setHasSubtypes(true);
+        spawner = REGISTRY.registerItem(new ItemPigSpawner(), "spawner").setHasSubtypes(true);
         REGISTRY.registerMob(EntityResourceHog.class, "resourcehog", 0, 0x123321, 0xab03bf);
         truffle = REGISTRY.registerBlock(new BlockTruffle(), "truffle");
         bacon = REGISTRY.registerItem(new ItemBacon(), "bacon").setHasSubtypes(true);
-        this.mudBucket = REGISTRY.registerItem(new ItemMudBucket(), "mud_bucket").setHasSubtypes(true);
+        mudBucket = REGISTRY.registerItem(new ItemMudBucket(), "mud_bucket").setHasSubtypes(true);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
