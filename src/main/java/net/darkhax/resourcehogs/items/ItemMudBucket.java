@@ -42,7 +42,7 @@ public class ItemMudBucket extends Item implements IColorfulItem {
 
             if (target instanceof EntityResourceHog) {
 
-                if (playerIn.isServerWorld()) {
+                if (!playerIn.world.isRemote) {
 
                     playerIn.sendStatusMessage(new TextComponentString("You can not convert an already converted pig."), true);
                 }
@@ -54,9 +54,11 @@ public class ItemMudBucket extends Item implements IColorfulItem {
 
             if (type != null || type == ResourceRegistry.MISSING) {
 
-                if (target.isServerWorld()) {
+                if (!target.world.isRemote) {
 
                     final EntityResourceHog hog = new EntityResourceHog(target.world);
+                    final EntityPig originalPig = (EntityPig) target;
+                    
                     hog.copyLocationAndAnglesFrom(target);
 
                     if (target.hasCustomName()) {
@@ -68,7 +70,8 @@ public class ItemMudBucket extends Item implements IColorfulItem {
                     target.world.spawnEntity(hog);
                     target.world.removeEntity(target);
                     hog.setResourceType(type);
-                    stack.shrink(1);
+                    hog.setGrowingAge(originalPig.getGrowingAge());
+                    
                     playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
                 }
 
