@@ -72,7 +72,7 @@ public class ItemMudBucket extends Item implements IColorfulItem {
                     hog.setResourceType(type);
                     hog.setGrowingAge(originalPig.getGrowingAge());
                     
-                    playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
+                    playerIn.setHeldItem(hand,ItemStack.EMPTY);
                 }
 
                 return true;
